@@ -6,14 +6,14 @@
 /*   By: tchtaibi <tchtaibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 23:55:52 by tchtaibi          #+#    #+#             */
-/*   Updated: 2022/03/13 23:57:20 by tchtaibi         ###   ########.fr       */
+/*   Updated: 2022/03/19 00:03:46 by tchtaibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	ft_errord()
+int	ft_errord()
 {
 	write(2, "Error digits\n", 13);
-	exit(1);
+	return (0);
 }

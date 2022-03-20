@@ -1,4 +1,4 @@
-src = main.c check_dgts.c tools.c errors.c
+src = main.c tools.c errors.c
 FLAGS = -Wall -Wextra -Werror
 CC = cc
 philosopher = philosopher
