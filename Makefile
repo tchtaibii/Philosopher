@@ -10,13 +10,9 @@ $(philosopher): $(src)
 	@tput setaf 2; echo "PHILOSOPHER IS READY"
 
 clean :
-	@rm -f push_swap
+	@rm -f philo
 	@tput setaf 1; echo "CLEAN COMPLET"
 
 fclean : clean
-
-re: fclean all
-
-fclean : clean 
 
 re: fclean all
