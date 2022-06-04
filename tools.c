@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tchtaibi <tchtaibi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 23:39:00 by tchtaibi          #+#    #+#             */
-/*   Updated: 2022/03/21 01:38:21 by tchtaibi         ###   ########.fr       */
+/*   Updated: 2022/04/26 03:14:31 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,5 @@ int	ft_atoi(char *str)
 		printf("ERROR\n");
 		exit(1);
 	}
-	printf("%d\n", i);
 	return (o * r);
 }
