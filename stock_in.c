@@ -6,7 +6,7 @@
 /*   By: tchtaibi <tchtaibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 15:29:08 by tchtaibi          #+#    #+#             */
-/*   Updated: 2022/06/05 00:09:20 by tchtaibi         ###   ########.fr       */
+/*   Updated: 2022/06/05 03:52:17 by tchtaibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,21 @@ t_philos *stock_in(int ac, char **av)
 	return (a);
 }
 
-t_philo	*philo_data(int n)
+t_philo	*philo_data(t_philos *philos)
 {
-	t_philo *data;
+	t_philo *philo;
 	int i;
 
-	data = malloc(n * sizeof(t_philo));
+	philo = malloc(philos->p * sizeof(t_philo));
 	i = 0;
-	while (n > i)
+	
+	while (philos->p > i)
 	{
-		pthread_mutex_init(&data[i].forks, NULL);
-		data[i].index = i;
+		pthread_mutex_init(&philo[i].forks, NULL);
+		philo[i].threads = malloc(sizeof(pthread_t));
+		philo[i].index = i;
 		i++;
 	}
-	return (data);
+	philo->philos_ = philos;
+	return (philo);
 }
