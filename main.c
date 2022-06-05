@@ -6,7 +6,7 @@
 /*   By: tchtaibi <tchtaibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 23:26:04 by tchtaibi          #+#    #+#             */
-/*   Updated: 2022/06/05 17:00:16 by tchtaibi         ###   ########.fr       */
+/*   Updated: 2022/06/05 17:57:51 by tchtaibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,25 @@ void	*routine(void *x)
 	t_philo *philo;
 
 	philo = (t_philo *)x;
+	printf("--%d is waiting\n", philo->index + 1);
 	while (1)
 	{
-		pthread_mutex_lock(philo[philo->index].forks);
+		pthread_mutex_lock(&philo->forks);
 		printf("Philosopher %d took fork\n",philo->index + 1);
-		pthread_mutex_lock(philo[philo->index + 1].forks);
-		printf("Philosopher %d took 2 fork\n",philo->index + 1);
+		if (philo->index + 1 == philo->p)
+			pthread_mutex_lock(&philo[0].forks);
+		else
+			pthread_mutex_lock(&philo[philo->index + 1].forks);
+		printf("Philosopher %d took fork\n",philo->index + 1);
 		printf("Philosopher %d is eating\n", philo->index + 1);
-		usleep(philo->te);
+		sleep(3);
 		printf("Philosopher %d is sleeping\n", philo->index + 1);
 		usleep(philo->ts);
-		pthread_mutex_unlock(philo->forks);
-		pthread_mutex_unlock(philo[philo->index + 1].forks);
+		pthread_mutex_unlock(&philo->forks);
+		if (philo->index + 1 == philo->p)
+			pthread_mutex_unlock(&philo[0].forks);
+		else
+			pthread_mutex_unlock(&philo[philo->index + 1].forks);
 	}
 	return NULL;
 }
@@ -40,9 +47,10 @@ void	threads_mk(t_philo *philo)
 	i = -1;
 	while (++i < philo->p)
 	{
-		pthread_create(philo[i].threads, NULL, &routine, &philo[i]);
-		sleep(1);
+		pthread_create(&philo[i].threads, NULL, &routine, &philo[i]);
+		usleep(100);
 	}
+	while(1);
 }
 
 int	main(int ac, char **av)

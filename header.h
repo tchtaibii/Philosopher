@@ -6,7 +6,7 @@
 /*   By: tchtaibi <tchtaibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 23:26:14 by tchtaibi          #+#    #+#             */
-/*   Updated: 2022/06/05 16:58:05 by tchtaibi         ###   ########.fr       */
+/*   Updated: 2022/06/05 17:52:55 by tchtaibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,11 @@
 # include <stdlib.h>
 # include <pthread.h>
 
-typedef struct s_philos
-{
-	
-}	t_philos;
-
 typedef struct s_philo
 {
-	pthread_t		*threads;
-	pthread_mutex_t	*forks;
-	pthread_mutex_t	*print_;
-	t_philos		philos_;
+	pthread_t		threads;
+	pthread_mutex_t	forks;
+	pthread_mutex_t	print_;
 	int				index;
 	int				p;
 	int				td;
