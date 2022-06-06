@@ -6,7 +6,7 @@
 /*   By: tchtaibi <tchtaibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 23:26:14 by tchtaibi          #+#    #+#             */
-/*   Updated: 2022/06/06 17:33:15 by tchtaibi         ###   ########.fr       */
+/*   Updated: 2022/06/06 17:41:30 by tchtaibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_philos
 	int				tt;
 	int				lock;
 	long int		time;
+	int				p_eat;
 	pthread_mutex_t	print_;
 }	t_table;
 
@@ -53,5 +54,6 @@ void	ft_usleep(int n);
 void	ft_print(char *str, t_philo *philo);
 t_philo	*createt_node(int index, t_table *t);
 void	addback(t_philo **list, t_philo *tmp, int i);
+int	check_eat(t_philo *philo);
 
 #endif

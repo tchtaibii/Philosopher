@@ -6,7 +6,7 @@
 /*   By: tchtaibi <tchtaibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 23:26:04 by tchtaibi          #+#    #+#             */
-/*   Updated: 2022/06/06 17:32:33 by tchtaibi         ###   ########.fr       */
+/*   Updated: 2022/06/06 18:11:44 by tchtaibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_usleep(int n)
 
 void	ft_print(char *str, t_philo *philo)
 {
-	if (philo->t->lock)
+	if (philo->t->lock && philo->t->p_eat && philo->is_l)
 	{
 		pthread_mutex_lock(&philo->t->print_);
 		printf("%ld Philosopher %d %s \n",ft_time() - philo->t->time, philo->index, str);
@@ -50,20 +50,43 @@ void	*routine(void *x)
 	philo = (t_philo *)x;
 	while (philo->is_l)
 	{
-		pthread_mutex_lock(&philo->fork);
-		ft_print("took fork", philo);
-		pthread_mutex_lock(&philo->next->fork);
-		ft_print("took fork", philo);
-		ft_print("is eating", philo);
-		ft_usleep(philo->t->te);
-		philo->check += ft_time() - philo->t->time;
-		pthread_mutex_unlock(&philo->fork);
-		pthread_mutex_unlock(&philo->next->fork);
-		ft_print("is sleeping", philo);
-		ft_usleep(philo->t->ts);
-		ft_print("is thinking", philo);
+		if (philo->eat != philo->t->tt && philo->t->p_eat)
+		{
+			pthread_mutex_lock(&philo->fork);
+			ft_print("took fork", philo);
+			pthread_mutex_lock(&philo->next->fork);
+			ft_print("took fork", philo);
+			ft_print("is eating", philo);
+			ft_usleep(philo->t->te);
+			philo->check += ft_time() - philo->t->time;
+			pthread_mutex_unlock(&philo->fork);
+			pthread_mutex_unlock(&philo->next->fork);
+			philo->eat++;
+			ft_print("is sleeping", philo);
+			ft_usleep(philo->t->ts);
+			ft_print("is thinking", philo);
+		}
+		if (philo->t->tt != -1)
+			if (check_eat(philo))
+				philo->t->p_eat = 0;
 	}
 	return NULL;
+}
+
+int	check_eat(t_philo *philo)
+{
+	int i = 0;
+	int x = 0;
+	while (i < philo->t->p)
+	{
+		if (philo->eat == philo->t->tt)
+			x++;
+		philo = philo->next;
+		i++;
+	}
+	if (x == philo->t->p)
+		return (1);
+	return (0);
 }
 
 void	threads_mk(t_table table)
@@ -93,9 +116,12 @@ void	threads_mk(t_table table)
 	i = 0;
 	while (i < table.p)
 	{
+		tmp->eat = 0;	
 		tmp->check = tmp->t->td;
 		pthread_create(&tmp->thread, NULL, &routine, (void *)tmp);
-		usleep(100);
+		if (tmp->t->p > 20)
+			usleep(10);
+		usleep(60);
 		tmp = tmp->next;
 		i++;
 	}
@@ -119,6 +145,17 @@ void	threads_mk(t_table table)
 					philo = philo->next;
 					i++;
 				}
+			}
+			if (!philo->is_l || !philo->t->p_eat)
+			{
+				i = 0;
+				while (i < philo->t->p)
+				{
+					pthread_mutex_destroy(&philo->fork);
+					philo = philo->next;
+					i++;
+				}
+				pthread_mutex_destroy(&philo->t->print_);
 				return ;
 			}
 			philo = philo->next;

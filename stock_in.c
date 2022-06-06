@@ -6,7 +6,7 @@
 /*   By: tchtaibi <tchtaibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 15:29:08 by tchtaibi          #+#    #+#             */
-/*   Updated: 2022/06/06 17:29:06 by tchtaibi         ###   ########.fr       */
+/*   Updated: 2022/06/06 17:56:43 by tchtaibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ t_table stock_in(int ac, char **av)
 	a.ts = ft_atoi(av[4]);
 	if (ac == 6)
 		a.tt = ft_atoi(av[5]);
+	else
+		a.tt = -1;
 	a.lock = 1;
+	a.p_eat = 1;
 	return (a);
 }
