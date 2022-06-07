@@ -6,7 +6,7 @@
 /*   By: tchtaibi <tchtaibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 15:29:08 by tchtaibi          #+#    #+#             */
-/*   Updated: 2022/06/06 17:56:43 by tchtaibi         ###   ########.fr       */
+/*   Updated: 2022/06/07 02:55:52 by tchtaibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ t_table stock_in(int ac, char **av)
 {
 	t_table	a;
 
-	pthread_mutex_init(&a.print_, NULL);
 	a.p = ft_atoi(av[1]);
 	a.td = ft_atoi(av[2]);
 	a.te = ft_atoi(av[3]);
@@ -27,5 +26,6 @@ t_table stock_in(int ac, char **av)
 		a.tt = -1;
 	a.lock = 1;
 	a.p_eat = 1;
+	pthread_mutex_init(&a.print_, NULL);
 	return (a);
 }
