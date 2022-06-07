@@ -6,16 +6,16 @@
 /*   By: tchtaibi <tchtaibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 23:26:04 by tchtaibi          #+#    #+#             */
-/*   Updated: 2022/06/06 18:11:44 by tchtaibi         ###   ########.fr       */
+/*   Updated: 2022/06/07 03:22:50 by tchtaibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-long int    ft_time(void)
+long int	ft_time(void)
 {
-    long int        time;
-    struct timeval    c_time;
+    long int		time;
+    struct timeval	c_time;
 
     gettimeofday(&c_time, NULL);
     time = ((c_time.tv_sec * 1000) + (c_time.tv_usec / 1000));
@@ -24,8 +24,11 @@ long int    ft_time(void)
 
 void	ft_usleep(int n)
 {
-	long int c = 0;
-	long int  a = ft_time();
+	long int	c;
+	long int	a;
+
+	c = 0;
+	a = ft_time();
 	while (c < n)
 	{
 		c = ft_time() - a;
@@ -38,7 +41,8 @@ void	ft_print(char *str, t_philo *philo)
 	if (philo->t->lock && philo->t->p_eat && philo->is_l)
 	{
 		pthread_mutex_lock(&philo->t->print_);
-		printf("%ld Philosopher %d %s \n",ft_time() - philo->t->time, philo->index, str);
+		printf("%ld Philosopher %d %s \n",ft_time() - philo->t->time\
+		, philo->index, str);
 		pthread_mutex_unlock(&philo->t->print_);
 	}
 }
@@ -50,7 +54,8 @@ void	*routine(void *x)
 	philo = (t_philo *)x;
 	while (philo->is_l)
 	{
-		if (philo->eat != philo->t->tt && philo->t->p_eat)
+		if (philo->eat != philo->t->tt \
+			&& philo->t->p_eat)
 		{
 			pthread_mutex_lock(&philo->fork);
 			ft_print("took fork", philo);
@@ -70,13 +75,16 @@ void	*routine(void *x)
 			if (check_eat(philo))
 				philo->t->p_eat = 0;
 	}
-	return NULL;
+	return (NULL);
 }
 
 int	check_eat(t_philo *philo)
 {
-	int i = 0;
-	int x = 0;
+	int i;
+	int x;
+
+	i = 0;
+	x = 0;
 	while (i < philo->t->p)
 	{
 		if (philo->eat == philo->t->tt)
@@ -91,9 +99,9 @@ int	check_eat(t_philo *philo)
 
 void	threads_mk(t_table table)
 {
-	int	i;
+	int		i;
 	t_philo	*tmp;
-	t_philo *philo;
+	t_philo	*philo;
 
 	i = 0;
 	philo = NULL;
@@ -137,7 +145,8 @@ void	threads_mk(t_table table)
 				pthread_mutex_lock(&philo->t->print_);
 				printf("\033[0;31m");
 				if (philo->is_l)
-					printf("%ld philo %d died \n", ft_time() - philo->t->time, philo->index);
+					printf("%ld philo %d died \n", ft_time() - philo->t->time\
+					, philo->index);
 				pthread_mutex_unlock(&philo->t->print_);
 				while (i < philo->t->p)
 				{
@@ -170,6 +179,8 @@ int	main(int ac, char **av)
 	if (ac == 6 || ac == 5)
 	{
 		philo = stock_in(ac, av);
+		if (!ft_check_d(philo))
+			return (0);
 		threads_mk(philo);
 	}
 	else

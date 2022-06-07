@@ -6,7 +6,7 @@
 /*   By: tchtaibi <tchtaibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 16:17:28 by tchtaibi          #+#    #+#             */
-/*   Updated: 2022/06/06 17:07:46 by tchtaibi         ###   ########.fr       */
+/*   Updated: 2022/06/07 03:12:51 by tchtaibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ t_philo	*createt_node(int index, t_table *t)
 void	addback(t_philo **list, t_philo *tmp, int i)
 {
 	t_philo	*tmp1;
+	int		x;
     
-    int x = 0;
-
+    x = 0;
 	if (*list == NULL)
 		*list = tmp;
 	else
