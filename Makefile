@@ -1,4 +1,4 @@
-src = main.c tools.c errors.c stock_in.c link.c
+src = main.c tools.c stock_in.c link.c
 FLAGS = -Wall -Wextra -Werror
 CC = cc
 philosopher = philosopher

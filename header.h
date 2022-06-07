@@ -6,12 +6,12 @@
 /*   By: tchtaibi <tchtaibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 23:26:14 by tchtaibi          #+#    #+#             */
-/*   Updated: 2022/06/07 03:23:09 by tchtaibi         ###   ########.fr       */
+/*   Updated: 2022/06/07 16:51:25 by tchtaibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HEADER_H
-#define HEADER_H
+# define HEADER_H
 
 # include <stdio.h>
 # include <unistd.h>

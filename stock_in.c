@@ -6,13 +6,13 @@
 /*   By: tchtaibi <tchtaibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 15:29:08 by tchtaibi          #+#    #+#             */
-/*   Updated: 2022/06/07 03:21:30 by tchtaibi         ###   ########.fr       */
+/*   Updated: 2022/06/07 16:57:18 by tchtaibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-t_table stock_in(int ac, char **av)
+t_table	stock_in(int ac, char **av)
 {
 	t_table	a;
 

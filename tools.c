@@ -6,7 +6,7 @@
 /*   By: tchtaibi <tchtaibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 23:39:00 by tchtaibi          #+#    #+#             */
-/*   Updated: 2022/06/07 03:26:33 by tchtaibi         ###   ########.fr       */
+/*   Updated: 2022/06/07 16:58:30 by tchtaibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int	ft_check_d(t_table philo)
 
 int	ft_check(char *str)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (str[i])
 	{
@@ -57,10 +57,12 @@ int	ft_atoi(char *str, int l)
 	while (str[i] && str[i] >= '0' && str[i] <= '9')
 		r = r * 10 + (str[i++] - '0');
 	if (l)
+	{
 		if (r == 0)
 		{
 			printf("ERROR\n");
 			return (-400);
 		}
+	}
 	return (r);
 }
