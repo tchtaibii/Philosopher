@@ -6,7 +6,7 @@
 /*   By: tchtaibi <tchtaibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 23:26:04 by tchtaibi          #+#    #+#             */
-/*   Updated: 2022/06/09 23:47:07 by tchtaibi         ###   ########.fr       */
+/*   Updated: 2022/06/15 23:26:20 by tchtaibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_philo	*norm_thread(int i, t_philo *tmp, t_table table)
 		tmp->eat = 0;
 		tmp->check = tmp->t->td;
 		pthread_create(&tmp->thread, NULL, &routine, (void *)tmp);
+		pthread_detach(tmp->thread);
 		if (tmp->t->p > 20)
 			usleep(10);
 		usleep(60);

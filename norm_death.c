@@ -6,7 +6,7 @@
 /*   By: tchtaibi <tchtaibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 23:37:04 by tchtaibi          #+#    #+#             */
-/*   Updated: 2022/06/09 23:53:19 by tchtaibi         ###   ########.fr       */
+/*   Updated: 2022/06/15 00:43:09 by tchtaibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,15 @@ int	ft_death2(t_philo *philo)
 
 int	ft_death(t_philo *philo)
 {
-	int	i;
-
 	while (philo)
 	{
 		if (philo->check <= ft_time() - philo->t->time)
 		{
-			i = 0;
 			philo->t->lock = 0;
 			pthread_mutex_lock(&philo->t->print_);
 			printf("\033[0;31m");
 			if (philo->is_l)
-				printf("%ld philo %d died \n"\
+				printf("%ld %d died \n"\
 				, ft_time() - philo->t->time, philo->index);
 			pthread_mutex_unlock(&philo->t->print_);
 			philo = ft_death_stock(philo);

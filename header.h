@@ -6,7 +6,7 @@
 /*   By: tchtaibi <tchtaibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 23:26:14 by tchtaibi          #+#    #+#             */
-/*   Updated: 2022/06/09 23:38:52 by tchtaibi         ###   ########.fr       */
+/*   Updated: 2022/06/15 01:19:44 by tchtaibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 # define HEADER_H
 
 # include <stdio.h>
+# include <stdatomic.h>
 # include <unistd.h>
-# include <sys/time.h>
 # include <stdlib.h>
 # include <pthread.h>
+# include <sys/time.h>
 
 typedef struct s_philos
 {
@@ -26,35 +27,35 @@ typedef struct s_philos
 	int				te;
 	int				ts;
 	int				tt;
-	int				lock;
 	long int		time;
-	int				p_eat;
+	atomic_int		lock;
+	atomic_int		p_eat;
 	pthread_mutex_t	print_;
 }	t_table;
 
 typedef struct s_philo
 {
+	int					index;
+	t_table				*t;
 	pthread_t			thread;
 	pthread_mutex_t		fork;
-	int					index;
-	int					is_l;
-	int					check;
-	int					eat;
-	t_table				*t;
+	atomic_int			is_l;
+	atomic_int			check;
+	atomic_int			eat;
 	struct s_philo		*next;
 }	t_philo;
 
+long int	ft_time(void);
 t_table		stock_in(int ac, char **av);
 t_philo		*createt_node(int index, t_table *t);
 t_philo		*ft_death_stock(t_philo *philo);
-long int	ft_time(void);
 void		*routine(void *x);
 void		ft_usleep(int n);
 void		ft_print(char *str, t_philo *philo);
 void		routine_norm1(t_philo *philo);
 void		routine_norm2(t_philo *philo);
 void		addback(t_philo **list, t_philo *tmp, int i);
-int			ft_atoi(char *str, int l);
+int			ft_atoi(char *str);
 int			check_eat(t_philo *philo);
 int			ft_check_d(t_table philo);
 int			ft_death(t_philo *philo);

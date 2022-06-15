@@ -6,7 +6,7 @@
 /*   By: tchtaibi <tchtaibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 16:59:28 by tchtaibi          #+#    #+#             */
-/*   Updated: 2022/06/07 17:06:44 by tchtaibi         ###   ########.fr       */
+/*   Updated: 2022/06/11 01:42:32 by tchtaibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_print(char *str, t_philo *philo)
 	if (philo->t->lock && philo->t->p_eat && philo->is_l)
 	{
 		pthread_mutex_lock(&philo->t->print_);
-		printf("%ld Philosopher %d %s \n", ft_time() - philo->t->time \
+		printf("%ld %d %s \n", ft_time() - philo->t->time \
 		, philo->index, str);
 		pthread_mutex_unlock(&philo->t->print_);
 	}

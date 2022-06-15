@@ -6,23 +6,50 @@
 /*   By: tchtaibi <tchtaibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 23:39:00 by tchtaibi          #+#    #+#             */
-/*   Updated: 2022/06/07 16:58:30 by tchtaibi         ###   ########.fr       */
+/*   Updated: 2022/06/15 00:22:51 by tchtaibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
+int	ft_other_check(t_table philo)
+{
+	if (philo.p > 200 || philo.p == 0)
+	{
+		printf("Philosophers must be 0 < and <= 200\n");
+		return (0);
+	}
+	if (philo.td < 60)
+	{
+		printf("time to die must be > 60\n");
+		return (0);
+	}
+	if (philo.te < 60)
+	{
+		printf("time to eat must be > 60\n");
+		return (0);
+	}
+	if (philo.ts < 60)
+	{
+		printf("time to sleep must be > 60\n");
+		return (0);
+	}
+	return (1);
+}
+
 int	ft_check_d(t_table philo)
 {
-	if (philo.p == -400 || philo.p == -600)
+	if (philo.p == -600)
 		return (0);
-	if (philo.td == -400 || philo.td == -600)
+	if (philo.td == -600)
 		return (0);
-	if (philo.te == -400 || philo.te == -600)
+	if (philo.te == -600)
 		return (0);
-	if (philo.ts == -400 || philo.ts == -600)
+	if (philo.ts == -600)
 		return (0);
-	if (philo.tt == -400 || philo.tt == -600)
+	if (philo.tt == 0 || philo.tt == -600)
+		return (0);
+	if (!ft_other_check(philo))
 		return (0);
 	return (1);
 }
@@ -42,7 +69,7 @@ int	ft_check(char *str)
 	return (1);
 }
 
-int	ft_atoi(char *str, int l)
+int	ft_atoi(char *str)
 {
 	int		r;
 	int		i;
@@ -51,18 +78,10 @@ int	ft_atoi(char *str, int l)
 	r = 0;
 	if (!ft_check(str))
 	{
-		printf("IS NOT DIGIT\n");
+		printf("ERROR\n");
 		return (-600);
 	}
 	while (str[i] && str[i] >= '0' && str[i] <= '9')
 		r = r * 10 + (str[i++] - '0');
-	if (l)
-	{
-		if (r == 0)
-		{
-			printf("ERROR\n");
-			return (-400);
-		}
-	}
 	return (r);
 }

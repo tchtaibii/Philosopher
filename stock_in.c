@@ -6,7 +6,7 @@
 /*   By: tchtaibi <tchtaibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 15:29:08 by tchtaibi          #+#    #+#             */
-/*   Updated: 2022/06/07 16:57:18 by tchtaibi         ###   ########.fr       */
+/*   Updated: 2022/06/15 01:05:35 by tchtaibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ t_table	stock_in(int ac, char **av)
 {
 	t_table	a;
 
-	a.p = ft_atoi(av[1], 1);
-	a.td = ft_atoi(av[2], 1);
-	a.te = ft_atoi(av[3], 1);
-	a.ts = ft_atoi(av[4], 1);
+	a.p = ft_atoi(av[1]);
+	a.td = ft_atoi(av[2]);
+	a.te = ft_atoi(av[3]);
+	a.ts = ft_atoi(av[4]);
 	if (ac == 6)
-		a.tt = ft_atoi(av[5], 0);
+		a.tt = ft_atoi(av[5]);
 	else
 		a.tt = -1;
 	a.lock = 1;
