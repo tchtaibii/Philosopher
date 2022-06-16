@@ -1,5 +1,5 @@
 NAME = philo
-FLAGS = -Wall -Wextra -Werror -fsanitize=thread
+FLAGS = -Wall -Wextra -Werror
 src = main.c tools.c stock_in.c link.c func.c \
 		norm_routine.c norm_death.c
 CC = cc 

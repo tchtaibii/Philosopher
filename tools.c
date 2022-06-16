@@ -6,7 +6,7 @@
 /*   By: tchtaibi <tchtaibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 23:39:00 by tchtaibi          #+#    #+#             */
-/*   Updated: 2022/06/15 00:22:51 by tchtaibi         ###   ########.fr       */
+/*   Updated: 2022/06/16 01:48:13 by tchtaibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,10 @@ int	ft_check(char *str)
 	return (1);
 }
 
-int	ft_atoi(char *str)
+unsigned int	ft_atoi(char *str)
 {
-	int		r;
-	int		i;
+	unsigned int	r;
+	int				i;
 
 	i = 0;
 	r = 0;
@@ -83,5 +83,10 @@ int	ft_atoi(char *str)
 	}
 	while (str[i] && str[i] >= '0' && str[i] <= '9')
 		r = r * 10 + (str[i++] - '0');
+	if (r >= 2147483648)
+	{
+		printf("ERROR\n");
+		return (-600);
+	}
 	return (r);
 }
